@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "e_laundry (development)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_development.dart",
+            "args": ["--flavor", "development"]
+        },
+        {
+            "name": "e_laundry (production)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_production.dart",
+            "args": ["--flavor", "production"]
+        },
+        {
+            "name": "e_laundry (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_production.dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "e_laundry (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_production.dart",
+            "flutterMode": "release"
+        }
+    ]
+}

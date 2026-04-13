@@ -1,0 +1,43 @@
+{
+  "@@locale": "en",
+  "appTitle": "Medi Dreamers",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "helloWorld": "Hello World!",
+  "@helloWorld": {
+    "description": "A simple greeting"
+  },
+  "welcomeBack": "Welcome back to your app",
+  "emailOrPhone": "Email or Phone Number",
+  "password": "Password",
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
+  "changeLanguage": "Change Language",
+  "modelTest": "Model Test",
+  "leaderboard": "Leaderboard",
+  "leaderboardSubtitle": "Real-time performance ranking of top scholars",
+  "featuredTest": "Featured Test",
+  "startExam": "Start exam",
+  "seeDetails": "See details",
+  "notAvailable": "Not Available",
+  "retry": "Retry",
+  "noLeaderboardData": "No leaderboard data available",
+  "loadMore": "Load More",
+  "prizeAndConditions": "Prize & conditions",
+  "@prizeAndConditions": {
+    "description": "Title for prize and conditions screen"
+  },
+  "prizesForThisTest": "Prizes for this model test (demo)",
+  "@prizesForThisTest": {
+    "description": "Header text for prizes section"
+  },
+  "termsAndConditions": "Terms & conditions",
+  "@termsAndConditions": {
+    "description": "Header text for terms and conditions section"
+  },
+  "registrationComingSoon": "Registration feature coming soon!",
+  "@registrationComingSoon": {
+    "description": "Message shown when registration is clicked"
+  }
+}

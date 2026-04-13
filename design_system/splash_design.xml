@@ -1,0 +1,9 @@
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/splash_scre"
+android:layout_width="392dp"
+android:layout_height="876dp"
+android:clipToOutline="true"
+android:background="#FFFFFF"
+ />
+

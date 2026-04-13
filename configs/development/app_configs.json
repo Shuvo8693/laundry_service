@@ -1,0 +1,5 @@
+{
+  "baseUrl": "https://dev-api.example.com",
+  "env": "development",
+  "isLoggerEnabled": true
+}
