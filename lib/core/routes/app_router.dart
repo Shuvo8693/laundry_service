@@ -1,3 +1,7 @@
+import 'package:e_laundry/core/navigation/cubit/navigation_cubit.dart';
+import 'package:e_laundry/features/main/presentation/screens/main_screen.dart';
+import 'package:e_laundry/features/onboarding/onboarding_screen.dart';
+import 'package:e_laundry/features/onboarding/presentation/cubit/onboarding/onboarding_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -16,17 +20,24 @@ final GoRouter appRouter = GoRouter(
         child: const SplashScreen(),
       ),
     ),
-    // GoRoute(
-    //   path: RouteNames.dashboard,
-    //   builder: (context, state) => BlocProvider(
-    //     create: (context) => di<NavigationCubit>(),
-    //     child: const MainScreen(),
-    //   ),
-    // ),
+    GoRoute(
+      path: RouteNames.dashboard,
+      builder: (context, state) => BlocProvider(
+        create: (context) => di<NavigationCubit>(),
+        child: const MainScreen(),
+      ),
+    ),
     GoRoute(
       path: RouteNames.login,
       builder: (context, state) =>
           const Scaffold(body: Center(child: Text('Login Screen'))),
+    ),
+    GoRoute(
+      path: RouteNames.onboarding,
+      builder: (context, state) => BlocProvider(
+        create: (context) => di<OnboardingCubit>(),
+        child: const OnboardingScreen(),
+      ),
     ),
   ],
 );

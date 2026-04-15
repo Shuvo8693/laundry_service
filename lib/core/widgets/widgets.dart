@@ -5,7 +5,7 @@ export 'custom_text.dart';
 export 'error_placeholder.dart';
 export 'language_switcher.dart';
 export 'language_switcher.dart' show LanguageSwitcherDropdown;
-export 'medi_button.dart';
+export 'app_button.dart';
 export 'shimmer_placeholder.dart';
 export 'spacing.dart';
 

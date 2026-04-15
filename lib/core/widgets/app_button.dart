@@ -4,7 +4,7 @@ import 'package:e_laundry/core/resources/colors/app_colors.dart';
 
 /// Custom button widget following the design system from home_design.html
 /// Based on the "Start" button design with gradient and rounded-full style
-class MediButton extends StatelessWidget {
+class AppButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
   final List<Color>? gradientColors;
@@ -18,7 +18,7 @@ class MediButton extends StatelessWidget {
   final bool isLoading;
   final Widget? icon;
 
-  const MediButton({
+  const AppButton({
     super.key,
     required this.text,
     required this.onPressed,
@@ -35,7 +35,7 @@ class MediButton extends StatelessWidget {
   });
 
   /// Default primary gradient (teal)
-  factory MediButton.primary({
+  factory AppButton.primary({
     required String text,
     required VoidCallback? onPressed,
     double? width,
@@ -43,7 +43,7 @@ class MediButton extends StatelessWidget {
     bool isLoading = false,
     Widget? icon,
   }) {
-    return MediButton(
+    return AppButton(
       key: UniqueKey(),
       text: text,
       horizontalPadding: horizontalPadding ?? 32,
@@ -57,14 +57,14 @@ class MediButton extends StatelessWidget {
   }
 
   /// Secondary gradient (blue)
-  factory MediButton.secondary({
+  factory AppButton.secondary({
     required String text,
     required VoidCallback? onPressed,
     double? width,
     bool isLoading = false,
     Widget? icon,
   }) {
-    return MediButton(
+    return AppButton(
       key: UniqueKey(),
       text: text,
       onPressed: onPressed,
@@ -76,28 +76,8 @@ class MediButton extends StatelessWidget {
     );
   }
 
-  /// Tertiary gradient (yellow/gold)
-  factory MediButton.tertiary({
-    required String text,
-    required VoidCallback? onPressed,
-    double? width,
-    bool isLoading = false,
-    Widget? icon,
-  }) {
-    return MediButton(
-      key: UniqueKey(),
-      text: text,
-      onPressed: onPressed,
-      gradientColors: const [AppColors.tertiary, AppColors.tertiaryContainer],
-      textColor: AppColors.onTertiary,
-      width: width,
-      isLoading: isLoading,
-      icon: icon,
-    );
-  }
-
   /// Outlined/secondary button style
-  factory MediButton.outlined({
+  factory AppButton.outlined({
     required String text,
     required VoidCallback? onPressed,
     double? width,
@@ -105,7 +85,7 @@ class MediButton extends StatelessWidget {
     Color? backgroundColor,
     Color? textColor,
   }) {
-    return MediButton(
+    return AppButton(
       key: UniqueKey(),
       text: text,
       horizontalPadding: horizontalPadding ?? 32,
@@ -117,13 +97,13 @@ class MediButton extends StatelessWidget {
   }
 
   /// White button (for dark backgrounds)
-  factory MediButton.white({
+  factory AppButton.white({
     required String text,
     required VoidCallback? onPressed,
     double? width,
     Color? textColor,
   }) {
-    return MediButton(
+    return AppButton(
       key: UniqueKey(),
       text: text,
       onPressed: onPressed,

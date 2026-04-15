@@ -6,6 +6,5 @@ class RouteNames {
   static const String profile = '/profile';
   static const String settings = '/settings';
   static const String dashboard = '/dashboard';
-  static const String modelTest = '/model-test';
-  static const String prizeAndCondition = '/prize-and-condition';
+  static const String onboarding = '/onboarding';
 }

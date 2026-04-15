@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:e_laundry/core/resources/colors/app_colors.dart';
 import 'package:e_laundry/core/widgets/custom_text.dart';
-import 'package:e_laundry/core/widgets/medi_button.dart';
+import 'package:e_laundry/core/widgets/app_button.dart';
 import 'package:e_laundry/core/widgets/spacing.dart';
 
 /// A reusable error placeholder widget for failed API/data loads.
@@ -53,7 +53,7 @@ class ErrorPlaceholder extends StatelessWidget {
             ),
             if (onRetry != null) ...[
               const VerticalSpace.large(),
-              MediButton.primary(
+              AppButton.primary(
                 text: retryText ?? 'Retry',
                 onPressed: onRetry,
                 width: 160,

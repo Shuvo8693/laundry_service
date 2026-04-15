@@ -1,52 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:e_laundry/core/utils/screen_util.dart';
+import 'package:e_laundry/core/resources/colors/app_colors.dart';
 
 class SplashLogo extends StatelessWidget {
   const SplashLogo({super.key});
+
+  // Set to true to use SVG, false to use PNG/any image asset
+  static const bool _useSvg = true;
+  static const String _logoAsset = 'assets/app_logo/laundry-logo.svg';
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.center,
       children: [
-        // Accent glow effect (behind main logo)
+        // Logo card with shadow
         Container(
-          width: 120.r,
-          height: 120.r,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(32.r),
-            color: Colors.white.withValues(alpha: 0.10),
+            color: AppColors.surfaceLowest,
+            borderRadius: BorderRadius.circular(28.r),
             boxShadow: [
               BoxShadow(
-                color: Colors.white.withValues(alpha: 0.15),
-                blurRadius: 20.r,
-                spreadRadius: 2.r,
-              ),
-            ],
-          ),
-        ),
-        // Main logo container with gradient
-        Container(
-          width: 100.r,
-          height: 100.r,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24.r),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.15),
-                blurRadius: 32.r,
-                offset: Offset(0, 8.r),
+                color: AppColors.onSurface.withValues(alpha: 0.08),
+                blurRadius: 40.r,
+                offset: Offset(0, 12.r),
               ),
             ],
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(24.r),
-            child: SvgPicture.asset(
-              'assets/app_logo/Laundry-logo 1.svg',
-              width: 100.r,
-              height: 100.r,
-              fit: BoxFit.contain,
+            borderRadius: BorderRadius.circular(28.r),
+            child: Padding(
+              padding: EdgeInsets.all(16.r),
+              child: _useSvg
+                  ? SvgPicture.asset(_logoAsset, fit: BoxFit.contain)
+                  : Image.asset(_logoAsset, fit: BoxFit.contain),
             ),
           ),
         ),

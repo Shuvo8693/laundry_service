@@ -23,11 +23,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context);
     return BlocProvider(
       create: (context) => di<LanguageCubit>(),
       child: BlocBuilder<LanguageCubit, LanguageState>(
         builder: (context, state) {
+          ScreenUtil.init(context);
           return MaterialApp.router(
             title: 'Medi Dreamers',
             debugShowCheckedModeBanner: false,

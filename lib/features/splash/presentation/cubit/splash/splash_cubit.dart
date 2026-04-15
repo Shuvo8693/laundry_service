@@ -21,7 +21,7 @@ class SplashCubit extends Cubit<SplashState> {
     });
 
     // 2. Initial Auth Check and Navigation Delay
-    await Future.delayed(const Duration(seconds: 3)); // Minimum splash duration
+    await Future.delayed(const Duration(seconds: 5)); // Minimum splash duration
 
     final isLoggedIn = await authRepository.isLoggedIn();
     if (!isLoggedIn) {

@@ -19,6 +19,10 @@ import 'package:e_laundry/features/splash/data/datasources/mock_splash_datasourc
 import 'package:e_laundry/features/splash/data/repositories/splash_repository_impl.dart';
 import 'package:e_laundry/features/splash/domain/repositories/splash_repository.dart';
 import 'package:e_laundry/features/splash/presentation/cubit/splash/splash_cubit.dart';
+import 'package:e_laundry/features/onboarding/data/datasources/mock_onboarding_datasource.dart';
+import 'package:e_laundry/features/onboarding/data/repositories/onboarding_repository_impl.dart';
+import 'package:e_laundry/features/onboarding/domain/repositories/onboarding_repository.dart';
+import 'package:e_laundry/features/onboarding/presentation/cubit/onboarding/onboarding_cubit.dart';
 
 final di = GetIt.instance;
 
@@ -111,6 +115,15 @@ Future<void> initDI(AppConfig config) async {
   );
   di.registerFactory(
     () => SplashCubit(splashRepository: di(), authRepository: di()),
+  );
+
+  // Onboarding
+  di.registerLazySingleton(() => MockOnboardingDataSource());
+  di.registerLazySingleton<OnboardingRepository>(
+    () => OnboardingRepositoryImpl(mockDataSource: di()),
+  );
+  di.registerFactory(
+    () => OnboardingCubit(onboardingRepository: di()),
   );
 
   // Home

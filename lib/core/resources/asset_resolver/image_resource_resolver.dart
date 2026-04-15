@@ -2,7 +2,8 @@ import 'package:e_laundry/core/resources/asset_resolver/png_image_resource.dart'
 import 'package:e_laundry/core/resources/asset_resolver/svg_image_resource.dart';
 
 const String assetBasePath = 'assets';
-const String imageBasePath = '$assetBasePath/images';
+const String imageBasePath = '$assetBasePath/app_images';
+const String iconBasePath = '$assetBasePath/app_icons';
 
 class ImageResourceResolver {
   // App Logo
@@ -19,41 +20,26 @@ class ImageResourceResolver {
   static SVGImageResource get homeBgSVG =>
       const SVGImageResource('$imageBasePath/home_bg.svg');
 
-  // Bottom Navigation Icons - Outlined
+  // Bottom Navigation Icons - Filled
   static PNGImageResource get homeOutlined =>
       const PNGImageResource('$imageBasePath/home_outlined.png');
 
-  static PNGImageResource get searchOutlined =>
-      const PNGImageResource('$imageBasePath/search_outlined.png');
+  // Bottom Navigation Icons - Outlined
+  static PNGImageResource get home =>
+      const PNGImageResource('$iconBasePath/laundry_home.svg');
 
-  static PNGImageResource get profileOutlined =>
-      const PNGImageResource('$imageBasePath/profile_outlined.png');
+  static PNGImageResource get order =>
+      const PNGImageResource('$iconBasePath/laundry_order.svg');
 
-  static PNGImageResource get settingsOutlined =>
-      const PNGImageResource('$imageBasePath/settings_outlined.png');
+  static PNGImageResource get profile =>
+      const PNGImageResource('$iconBasePath/laundry_profile.svg');
 
-  // Bottom Navigation Icons - Filled
-  static PNGImageResource get homeFilled =>
-      const PNGImageResource('$imageBasePath/home_filled.png');
-
-  static PNGImageResource get searchFilled =>
-      const PNGImageResource('$imageBasePath/search_filled.png');
-
-  static PNGImageResource get profileFilled =>
-      const PNGImageResource('$imageBasePath/profile_filled.png');
-
-  static PNGImageResource get settingsFilled =>
-      const PNGImageResource('$imageBasePath/settings_filled.png');
+  static PNGImageResource get service =>
+      const PNGImageResource('$iconBasePath/laundry_service.svg');
 
   // Common Icons
   static PNGImageResource get notificationIcon =>
-      const PNGImageResource('$imageBasePath/notification.png');
-
-  static PNGImageResource get menuIcon =>
-      const PNGImageResource('$imageBasePath/menu.png');
-
-  static PNGImageResource get backIcon =>
-      const PNGImageResource('$imageBasePath/back.png');
+      const PNGImageResource('$iconBasePath/notification.png');
 
   // Placeholder Images
   static PNGImageResource get userPlaceholder =>

@@ -15,11 +15,11 @@ class AppNavigation {
     context.push(RouteNames.profile);
   }
 
-  static void toModelTest(BuildContext context, String testId) {
-    context.push('${RouteNames.modelTest}?testId=$testId');
-  }
-
   static void back(BuildContext context) {
     context.pop();
+  }
+
+  static void toOnboarding(BuildContext context) {
+    context.go(RouteNames.onboarding);
   }
 }
