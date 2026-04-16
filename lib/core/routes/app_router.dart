@@ -8,6 +8,13 @@ import 'package:go_router/go_router.dart';
 import 'package:e_laundry/core/routes/route_names.dart';
 import 'package:e_laundry/features/splash/presentation/screens/splash_screen.dart';
 import 'package:e_laundry/features/splash/presentation/cubit/splash/splash_cubit.dart';
+import 'package:e_laundry/features/auth/presentation/screens/login_screen.dart';
+import 'package:e_laundry/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:e_laundry/features/auth/presentation/screens/otp_screen.dart';
+import 'package:e_laundry/features/auth/presentation/screens/fill_personal_info_screen.dart';
+import 'package:e_laundry/features/auth/presentation/screens/forgot_password_screen.dart';
+import 'package:e_laundry/features/auth/presentation/screens/reset_password_screen.dart';
+import 'package:e_laundry/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:e_laundry/injection_container.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -29,8 +36,45 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
       path: RouteNames.login,
-      builder: (context, state) =>
-          const Scaffold(body: Center(child: Text('Login Screen'))),
+      builder: (context, state) => BlocProvider(
+        create: (context) => di<AuthCubit>(),
+        child: const LoginScreen(),
+      ),
+    ),
+    GoRoute(
+      path: RouteNames.signup,
+      builder: (context, state) => BlocProvider(
+        create: (context) => di<AuthCubit>(),
+        child: const SignUpScreen(),
+      ),
+    ),
+    GoRoute(
+      path: RouteNames.otp,
+      builder: (context, state) => BlocProvider(
+        create: (context) => di<AuthCubit>(),
+        child: const OtpScreen(),
+      ),
+    ),
+    GoRoute(
+      path: RouteNames.fillInfo,
+      builder: (context, state) => BlocProvider(
+        create: (context) => di<AuthCubit>(),
+        child: const FillPersonalInfoScreen(),
+      ),
+    ),
+    GoRoute(
+      path: RouteNames.forgotPassword,
+      builder: (context, state) => BlocProvider(
+        create: (context) => di<AuthCubit>(),
+        child: const ForgotPasswordScreen(),
+      ),
+    ),
+    GoRoute(
+      path: RouteNames.resetPassword,
+      builder: (context, state) => BlocProvider(
+        create: (context) => di<AuthCubit>(),
+        child: const ResetPasswordScreen(),
+      ),
     ),
     GoRoute(
       path: RouteNames.onboarding,

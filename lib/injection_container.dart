@@ -14,7 +14,13 @@ import 'package:e_laundry/core/navigation/cubit/navigation_cubit.dart';
 import 'package:e_laundry/core/localization/cubit/language_cubit.dart';
 import 'package:e_laundry/features/auth/domain/repositories/auth_repository.dart';
 import 'package:e_laundry/features/auth/data/repositories/auth_repository_impl.dart';
-import 'package:e_laundry/features/auth/data/datasources/auth_local_datasource.dart';
+import 'package:e_laundry/features/auth/data/datasources/auth_local_data_source.dart';
+import 'package:e_laundry/features/auth/domain/usecases/login_usecase.dart';
+import 'package:e_laundry/features/auth/domain/usecases/sign_up_usecase.dart';
+import 'package:e_laundry/features/auth/domain/usecases/verify_otp_usecase.dart';
+import 'package:e_laundry/features/auth/domain/usecases/reset_password_usecase.dart';
+import 'package:e_laundry/features/auth/domain/usecases/send_otp_usecase.dart';
+import 'package:e_laundry/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:e_laundry/features/splash/data/datasources/mock_splash_datasource.dart';
 import 'package:e_laundry/features/splash/data/repositories/splash_repository_impl.dart';
 import 'package:e_laundry/features/splash/domain/repositories/splash_repository.dart';
@@ -101,11 +107,29 @@ Future<void> initDI(AppConfig config) async {
 
   // Repositories & Data Sources (Blueprint examples)
   di.registerLazySingleton<AuthLocalDataSource>(
-    () => AuthLocalDataSource(sharedPreferences: di()),
+    () => AuthLocalDataSourceImpl(),
   );
 
   di.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(localDataSource: di()),
+  );
+
+  // Auth UseCases
+  di.registerLazySingleton(() => LoginUseCase(di()));
+  di.registerLazySingleton(() => SignUpUseCase(di()));
+  di.registerLazySingleton(() => VerifyOtpUseCase(di()));
+  di.registerLazySingleton(() => ResetPasswordUseCase(di()));
+  di.registerLazySingleton(() => SendOtpUseCase(di()));
+
+  // Auth Cubit
+  di.registerFactory(
+    () => AuthCubit(
+      loginUseCase: di(),
+      signUpUseCase: di(),
+      verifyOtpUseCase: di(),
+      resetPasswordUseCase: di(),
+      sendOtpUseCase: di(),
+    ),
   );
 
   // Splash

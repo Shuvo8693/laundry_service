@@ -1,3 +1,4 @@
+import 'package:e_laundry/core/utils/screen_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +10,7 @@ import 'package:e_laundry/core/routes/route_names.dart';
 import 'package:e_laundry/features/onboarding/presentation/cubit/onboarding/onboarding_cubit.dart';
 import 'package:e_laundry/features/onboarding/presentation/cubit/onboarding/onboarding_state.dart';
 import 'package:e_laundry/features/onboarding/domain/entities/onboarding_page_entity.dart';
+import 'package:smart_svg_image/smart_svg_image.dart';
 
 // ─── Onboarding Screen ───────────────────────────────────────────────────────
 class OnboardingScreen extends StatefulWidget {
@@ -83,8 +85,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       body: SafeArea(
         child: BlocConsumer<OnboardingCubit, OnboardingState>(
           listener: (context, state) {
-            if (state is OnboardingNavigateToLogin) {
-              context.go(RouteNames.login);
+            if (state is OnboardingNavigateToSignUp) {
+              context.go(RouteNames.signup);
             }
           },
           builder: (context, state) {
@@ -208,44 +210,49 @@ class _OnboardingPageView extends StatelessWidget {
       child: Column(
         children: [
           // ── Illustration Placeholder ──────────────────────────────────────────
-          Expanded(
-            flex: 5,
-            child: FadeTransition(
-              opacity: fadeAnimation,
-              child: Container(
-                width: double.infinity,
-                margin: const EdgeInsets.symmetric(vertical: 16),
-                decoration: BoxDecoration(
-                  color: _parseColor(page.illustrationBackgroundColor),
-                  borderRadius: BorderRadius.circular(28),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 96,
-                      height: 96,
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.15),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        Icons.local_laundry_service_outlined,
-                        size: 48,
-                        color: AppColors.primary,
-                      ),
-                    ),
-                    const VerticalSpace.small(),
-                    const CustomText.bodySmall(
-                      '[ Illustration ]',
-                      color: AppColors.primary,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+          const VerticalSpace(40),
+          SmartSvgImage(
+            svgAssetPath: 'assets/app_image/laundry_onboarding_1.svg',
+            width: 300.w,
+            height: 283.h,
           ),
-
+          // Expanded(
+          //   flex: 5,
+          //   child: FadeTransition(
+          //     opacity: fadeAnimation,
+          //     child: Container(
+          //       width: double.infinity,
+          //       margin: const EdgeInsets.symmetric(vertical: 16),
+          //       decoration: BoxDecoration(
+          //         color: _parseColor(page.illustrationBackgroundColor),
+          //         borderRadius: BorderRadius.circular(28),
+          //       ),
+          //       child: Column(
+          //         mainAxisAlignment: MainAxisAlignment.center,
+          //         children: [
+          //           Container(
+          //             width: 96,
+          //             height: 96,
+          //             decoration: BoxDecoration(
+          //               color: AppColors.primary.withValues(alpha: 0.15),
+          //               shape: BoxShape.circle,
+          //             ),
+          //             child: Icon(
+          //               Icons.local_laundry_service_outlined,
+          //               size: 48,
+          //               color: AppColors.primary,
+          //             ),
+          //           ),
+          //           const VerticalSpace.small(),
+          //           const CustomText.bodySmall(
+          //             '[ Illustration ]',
+          //             color: AppColors.primary,
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // ),
           const VerticalSpace.small(),
 
           // ── Text Content ─────────────────────────────────────────────────────
@@ -298,7 +305,9 @@ class _DotIndicator extends StatelessWidget {
       width: isActive ? 24 : 8,
       height: 8,
       decoration: BoxDecoration(
-        color: isActive ? AppColors.primary : AppColors.primary.withValues(alpha: 0.25),
+        color: isActive
+            ? AppColors.primary
+            : AppColors.primary.withValues(alpha: 0.25),
         borderRadius: BorderRadius.circular(4),
       ),
     );

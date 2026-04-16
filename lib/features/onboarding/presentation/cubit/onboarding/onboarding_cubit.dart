@@ -6,7 +6,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   final OnboardingRepository onboardingRepository;
 
   OnboardingCubit({required this.onboardingRepository})
-      : super(OnboardingInitial());
+    : super(OnboardingInitial());
 
   Future<void> loadOnboardingPages() async {
     emit(OnboardingLoading());
@@ -20,6 +20,6 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   }
 
   void navigateToLogin() {
-    emit(OnboardingNavigateToLogin());
+    emit(OnboardingNavigateToSignUp());
   }
 }

@@ -30,4 +30,4 @@ class OnboardingError extends OnboardingState {
   List<Object?> get props => [message];
 }
 
-class OnboardingNavigateToLogin extends OnboardingState {}
+class OnboardingNavigateToSignUp extends OnboardingState {}

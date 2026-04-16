@@ -33,3 +33,5 @@ class SplashError extends SplashState {
 class SplashNavigateToLogin extends SplashState {}
 
 class SplashNavigateToHome extends SplashState {}
+
+class SplashNavigateToOnboarding extends SplashState {}
