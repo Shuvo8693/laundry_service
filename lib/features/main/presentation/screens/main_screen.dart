@@ -6,6 +6,7 @@ import 'package:e_laundry/core/navigation/cubit/navigation_cubit.dart';
 import 'package:e_laundry/core/navigation/cubit/navigation_state.dart';
 import 'package:e_laundry/core/widgets/custom_text.dart';
 import 'package:e_laundry/core/widgets/language_switcher.dart';
+import 'package:e_laundry/features/home/presentation/screens/home_screen.dart';
 
 /// Represents a nav item that can use either an SVG asset or an IconData.
 class NavItemConfig {
@@ -51,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     _screens = [
-      const Center(child: CustomText.bodyLarge('Home')),
+      const HomeScreen(),
       const Center(child: CustomText.bodyLarge('Service')),
       const Center(child: CustomText.bodyLarge('Orders')),
       const Center(child: CustomText.bodyLarge('Profile')),
@@ -123,8 +124,10 @@ class _MainScreenState extends State<MainScreen> {
           );
         },
       ),
-      floatingActionButton: const LanguageSwitcherDropdown(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+
+      ///========== This is language switcher at all nav screen top right position ==================
+      // floatingActionButton: const LanguageSwitcherDropdown(),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 }

@@ -36,7 +36,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
       context.read<AuthCubit>().sendOtp(phone);
     } else if (!_agreedToTerms) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please agree to terms and privacy policy')),
+        const SnackBar(
+          content: Text('Please agree to terms and privacy policy'),
+        ),
       );
     }
   }
@@ -45,18 +47,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(
-        title: '',
-        backgroundColor: Colors.white,
-      ),
+      appBar: CustomAppBar(title: '', backgroundColor: Colors.white),
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthOtpSent) {
             context.pushNamed(RouteNames.otp);
           } else if (state is AuthError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.message)),
-            );
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(state.message)));
           }
         },
         builder: (context, state) {
@@ -171,7 +170,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 // Login link
                 Center(
-                   child: RichText(
+                  child: RichText(
                     text: TextSpan(
                       text: 'Already have an account? ',
                       style: AppTextTheme.textTheme.bodyMedium!.copyWith(
@@ -185,7 +184,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             fontWeight: FontWeight.w500,
                           ),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () => context.pop(),
+                            ..onTap = () => context.push(RouteNames.login),
                         ),
                       ],
                     ),

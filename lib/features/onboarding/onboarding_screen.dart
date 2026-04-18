@@ -152,6 +152,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                           page: state.pages[index],
                           fadeAnimation: _fadeAnimation,
                           isActive: index == _currentPage,
+                          index: index,
                         );
                       },
                     ),
@@ -196,11 +197,13 @@ class _OnboardingPageView extends StatelessWidget {
   final OnboardingPageEntity page;
   final Animation<double> fadeAnimation;
   final bool isActive;
+  final int index;
 
   const _OnboardingPageView({
     required this.page,
     required this.fadeAnimation,
     required this.isActive,
+    required this.index,
   });
 
   @override
@@ -210,9 +213,10 @@ class _OnboardingPageView extends StatelessWidget {
       child: Column(
         children: [
           // ── Illustration Placeholder ──────────────────────────────────────────
-          const VerticalSpace(40),
+          VerticalSpace(40.h),
           SmartSvgImage(
-            svgAssetPath: 'assets/app_image/laundry_onboarding_1.svg',
+            svgAssetPath:
+                'assets/app_image/laundry_onboarding_${index + 1}.svg',
             width: 300.w,
             height: 283.h,
           ),

@@ -4,7 +4,7 @@ class AppColors {
   AppColors._();
 
   // Primary Colors (Medical Teal)
-  static const Color primary = Color(0xFF006A66);
+  static const Color primary = Color(0xFF146E8A);
   static const Color primaryFixed = Color(0xFF84F5EE);
   static const Color primaryFixedDim = Color(0xFF66D8D2);
   static const Color primaryContainer = Color(0xFF38B2AC);
@@ -62,7 +62,7 @@ class AppColors {
 
   // Gradient Colors
   static const List<Color> splashGradient = [
-    Color(0xFF0D9488), // primary
+    Color(0xFF146E8A), // primary
     Color(0xFF0EA5E9), // secondary
   ];
 }

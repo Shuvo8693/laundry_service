@@ -794,10 +794,22 @@ GoRoute(
 
 > 🔴 **MANDATORY**: Every single component below MUST be used in the feature UI where applicable. Never re-implement them.
 
-| Widget | Import | When to Use |
-|--------|--------|-------------|
-| `CustomText` | `core/widgets/custom_text.dart` | **All text rendering** in the app |
-| `AppButton` | `core/widgets/app_button.dart` | All buttons (primary, secondary, outlined) |
+| `CustomText` | `core/widgets/custom_text.dart` | **All text rendering** in the app using standardized `TextType`. |
+
+### 🛠 CustomText Standard Pattern
+
+Always use the following pattern for text rendering to ensure theme consistency:
+
+```dart
+CustomText(
+  text: 'Your Text Here',
+  textType: TextType.bodyMedium, // Choose appropriate type from TextType enum
+  color: AppColors.onSurface,    // Optional: override color if needed
+  textAlign: TextAlign.start,     // Optional: alignment
+)
+```
+
+**Avoid** using `.copyWith()` on `TextStyle` or the named constructors `CustomText.bodyMedium()` unless strictly necessary for a quick fix. The standard `CustomText()` with `textType` parameter is the preferred way.
 | `CustomAppBar` | `core/widgets/custom_app_bar.dart` | All screen `appBar:` properties |
 | `ShimmerPlaceholder` | `core/widgets/shimmer_placeholder.dart` | Loading states for lists/cards/images |
 | `ErrorPlaceholder` | `core/widgets/error_placeholder.dart` | All error states with retry |

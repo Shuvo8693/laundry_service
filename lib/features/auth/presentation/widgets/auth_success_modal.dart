@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:e_laundry/core/utils/screen_util.dart';
 import 'package:e_laundry/core/resources/colors/app_colors.dart';
-import 'package:e_laundry/core/resources/text/app_text_theme.dart';
 import 'package:e_laundry/core/widgets/widgets.dart';
 
 class AuthSuccessModal extends StatelessWidget {
@@ -16,7 +15,12 @@ class AuthSuccessModal extends StatelessWidget {
     required this.onConfirm,
   });
 
-  static void show(BuildContext context, {required String title, required String description, required VoidCallback onConfirm}) {
+  static void show(
+    BuildContext context, {
+    required String title,
+    required String description,
+    required VoidCallback onConfirm,
+  }) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -24,7 +28,11 @@ class AuthSuccessModal extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
       ),
-      builder: (_) => AuthSuccessModal(title: title, description: description, onConfirm: onConfirm),
+      builder: (_) => AuthSuccessModal(
+        title: title,
+        description: description,
+        onConfirm: onConfirm,
+      ),
     );
   }
 
@@ -49,7 +57,7 @@ class AuthSuccessModal extends StatelessWidget {
             ),
           ),
           SizedBox(height: 32.h),
-          
+
           // Success Icon Representation
           Container(
             width: 120.w,
@@ -74,7 +82,7 @@ class AuthSuccessModal extends StatelessWidget {
               ),
             ),
           ),
-          
+
           SizedBox(height: 24.h),
           CustomText(
             text: title,
@@ -90,10 +98,7 @@ class AuthSuccessModal extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 32.h),
-          AppButton.primary(
-            text: 'Confirm',
-            onPressed: onConfirm,
-          ),
+          AppButton.primary(text: 'Confirm', onPressed: onConfirm),
         ],
       ),
     );
