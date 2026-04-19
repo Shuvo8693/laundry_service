@@ -5,6 +5,7 @@ class NavigationCubit extends Cubit<NavigationState> {
   NavigationCubit() : super(const NavigationState());
 
   void navigateToIndex(int index) {
+    if (state.selectedIndex == index) return;
     emit(state.copyWith(selectedIndex: index));
   }
 
@@ -12,5 +13,4 @@ class NavigationCubit extends Cubit<NavigationState> {
   void navigateToNutrition() => navigateToIndex(1);
   void navigateToFitness() => navigateToIndex(2);
   void navigateToDoctors() => navigateToIndex(3);
-  void navigateToCare() => navigateToIndex(4);
 }

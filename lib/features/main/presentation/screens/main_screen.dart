@@ -1,4 +1,5 @@
 import 'package:e_laundry/core/utils/screen_util.dart';
+import 'package:e_laundry/features/service/presentation/screens/service_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -53,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     _screens = [
       const HomeScreen(),
-      const Center(child: CustomText.bodyLarge('Service')),
+      const ServiceListScreen(),
       const Center(child: CustomText.bodyLarge('Orders')),
       const Center(child: CustomText.bodyLarge('Profile')),
     ];

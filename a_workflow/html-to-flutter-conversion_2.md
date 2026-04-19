@@ -58,17 +58,31 @@ lib/
 │   │   └── app_config.dart
 │   ├── constants/
 │   │   └── app_constants.dart
+│   ├── entities/                        # ★ Base models & Error handlers
+│   │   ├── api_error.dart
+│   │   ├── json_serializer.dart
+│   │   └── session_data.dart
 │   ├── error/
 │   │   ├── exceptions.dart              # CacheException, ServerException …
 │   │   └── failures.dart                # CacheFailure, ServerFailure …
 │   ├── extensions/
-│   │   ├── context_extensions.dart
-│   │   └── string_extensions.dart
+│   │   ├── context_extension.dart
+│   │   ├── date_time_extension.dart
+│   │   └── string_extension.dart
+│   ├── localization/                     # ★ Language Management
+│   │   └── cubit/
+│   │       ├── language_cubit.dart
+│   │       └── language_state.dart
 │   ├── logger/
 │   │   └── app_logger.dart
+│   ├── navigation/                       # ★ Global Navigation State
+│   │   └── cubit/
+│   │       ├── navigation_cubit.dart
+│   │       └── navigation_state.dart
 │   ├── network/
-│   │   ├── api_client.dart
-│   │   └── network_info.dart
+│   │   ├── dio_network_call_executor.dart
+│   │   ├── network_caller.dart
+│   │   └── network.dart
 │   ├── resources/
 │   │   ├── asset_resolver/
 │   │   │   └── app_assets.dart          # all asset path constants
@@ -80,10 +94,14 @@ lib/
 │   │   ├── app_router.dart
 │   │   └── route_names.dart
 │   ├── services/
-│   │   └── local_storage_service.dart
+│   │   ├── notification_service.dart
+│   │   └── interceptors/
+│   │       ├── language_interceptor.dart
+│   │       └── network_interceptor.dart
 │   ├── utils/
 │   │   ├── screen_util.dart             # ★ ScreenUtil init + extension helpers
-│   │   ├── date_utils.dart
+│   │   ├── date_time_utils.dart
+│   │   ├── prayer_helper.dart
 │   │   └── validators.dart
 │   │
 │   └── widgets/                         # ★ GLOBAL REUSABLE UI COMPONENTS ★
@@ -795,6 +813,20 @@ GoRoute(
 > 🔴 **MANDATORY**: Every single component below MUST be used in the feature UI where applicable. Never re-implement them.
 
 | `CustomText` | `core/widgets/custom_text.dart` | **All text rendering** in the app using standardized `TextType`. |
+
+```dart
+enum TextType {
+  displayLarge,
+  displayMedium,
+  headlineLarge,
+  headlineMedium,
+  bodyLarge,
+  bodyMedium,
+  bodySmall,
+  labelLarge,
+  labelSmall,
+}
+```
 
 ### 🛠 CustomText Standard Pattern
 

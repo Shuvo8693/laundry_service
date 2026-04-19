@@ -34,6 +34,11 @@ import 'package:e_laundry/features/home/data/repositories/home_repository_impl.d
 import 'package:e_laundry/features/home/data/datasources/home_local_data_source.dart';
 import 'package:e_laundry/features/home/domain/usecases/get_home_data.dart';
 import 'package:e_laundry/features/home/presentation/cubit/home_cubit.dart';
+import 'package:e_laundry/features/service/data/datasources/service_local_data_source.dart';
+import 'package:e_laundry/features/service/data/repositories/service_repository_impl.dart';
+import 'package:e_laundry/features/service/domain/repositories/service_repository.dart';
+import 'package:e_laundry/features/service/presentation/cubit/service_cubit.dart';
+
 final di = GetIt.instance;
 
 Future<void> setUpNetworkExecutor() async {
@@ -150,9 +155,7 @@ Future<void> initDI(AppConfig config) async {
   di.registerLazySingleton<OnboardingRepository>(
     () => OnboardingRepositoryImpl(mockDataSource: di()),
   );
-  di.registerFactory(
-    () => OnboardingCubit(onboardingRepository: di()),
-  );
+  di.registerFactory(() => OnboardingCubit(onboardingRepository: di()));
 
   // Home
   di.registerLazySingleton<HomeLocalDataSource>(
@@ -162,7 +165,14 @@ Future<void> initDI(AppConfig config) async {
     () => HomeRepositoryImpl(localDataSource: di()),
   );
   di.registerLazySingleton(() => GetHomeData(di()));
-  di.registerFactory(
-    () => HomeCubit(getHomeData: di()),
+  di.registerFactory(() => HomeCubit(getHomeData: di()));
+
+  // Service
+  di.registerLazySingleton<ServiceLocalDataSource>(
+    () => ServiceLocalDataSourceImpl(),
   );
+  di.registerLazySingleton<ServiceRepository>(
+    () => ServiceRepositoryImpl(localDataSource: di()),
+  );
+  di.registerLazySingleton(() => ServiceCubit(repository: di()));
 }

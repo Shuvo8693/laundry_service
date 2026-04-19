@@ -11,4 +11,10 @@ class RouteNames {
   static const String settings = '/settings';
   static const String dashboard = '/dashboard';
   static const String onboarding = '/onboarding';
+  
+  // Service Feature
+  static const String laundryServices = '/laundry_services';
+  static const String selectService = '/select_service';
+  static const String bookingInfo = '/booking_info';
+  static const String orderSummary = '/order_summary';
 }

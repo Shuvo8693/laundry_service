@@ -2,16 +2,14 @@ import 'package:e_laundry/core/resources/asset_resolver/png_image_resource.dart'
 import 'package:e_laundry/core/resources/asset_resolver/svg_image_resource.dart';
 
 const String assetBasePath = 'assets';
-const String imageBasePath = '$assetBasePath/app_images';
-const String iconBasePath = '$assetBasePath/app_icons';
+const String imageBasePath = '$assetBasePath/app_image';
+const String iconBasePath = '$assetBasePath/app_icon';
+const String logoBasePath = '$assetBasePath/app_logo';
 
 class ImageResourceResolver {
   // App Logo
-  static PNGImageResource get appLogo =>
-      const PNGImageResource('$imageBasePath/app_logo.png');
-
-  static PNGImageResource get appIcon =>
-      const PNGImageResource('$imageBasePath/app_icon.png');
+  static SVGImageResource get appLogo =>
+      const SVGImageResource('$logoBasePath/laundry-logo.svg');
 
   // Background Images
   static PNGImageResource get homeBgPNG =>
@@ -20,22 +18,28 @@ class ImageResourceResolver {
   static SVGImageResource get homeBgSVG =>
       const SVGImageResource('$imageBasePath/home_bg.svg');
 
-  // Bottom Navigation Icons - Filled
-  static PNGImageResource get homeOutlined =>
-      const PNGImageResource('$imageBasePath/home_outlined.png');
+  // Bottom Navigation Icons - Filled/Outlined (Currently matching assets)
+  static SVGImageResource get home =>
+      const SVGImageResource('$iconBasePath/laundry_home.svg');
 
-  // Bottom Navigation Icons - Outlined
-  static PNGImageResource get home =>
-      const PNGImageResource('$iconBasePath/laundry_home.svg');
+  static SVGImageResource get order =>
+      const SVGImageResource('$iconBasePath/laundry_order.svg');
 
-  static PNGImageResource get order =>
-      const PNGImageResource('$iconBasePath/laundry_order.svg');
+  static SVGImageResource get profile =>
+      const SVGImageResource('$iconBasePath/laundry_profile.svg');
 
-  static PNGImageResource get profile =>
-      const PNGImageResource('$iconBasePath/laundry_profile.svg');
+  static SVGImageResource get service =>
+      const SVGImageResource('$iconBasePath/laundry_service.svg');
 
-  static PNGImageResource get service =>
-      const PNGImageResource('$iconBasePath/laundry_service.svg');
+  // Onboarding
+  static SVGImageResource get onboarding1 =>
+      const SVGImageResource('$imageBasePath/laundry_onboarding_1.svg');
+
+  static SVGImageResource get onboarding2 =>
+      const SVGImageResource('$imageBasePath/laundry_onboarding_2.svg');
+
+  static SVGImageResource get onboarding3 =>
+      const SVGImageResource('$imageBasePath/laundry_onboarding_3.svg');
 
   // Common Icons
   static PNGImageResource get notificationIcon =>

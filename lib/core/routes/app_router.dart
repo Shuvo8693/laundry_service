@@ -15,6 +15,11 @@ import 'package:e_laundry/features/auth/presentation/screens/fill_personal_info_
 import 'package:e_laundry/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:e_laundry/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:e_laundry/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:e_laundry/features/service/presentation/cubit/service_cubit.dart';
+import 'package:e_laundry/features/service/presentation/screens/service_list_screen.dart';
+import 'package:e_laundry/features/service/presentation/screens/select_service_screen.dart';
+import 'package:e_laundry/features/service/presentation/screens/booking_info_screen.dart';
+import 'package:e_laundry/features/service/presentation/screens/order_summary_screen.dart';
 import 'package:e_laundry/injection_container.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -29,8 +34,8 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
       path: RouteNames.dashboard,
-      builder: (context, state) => BlocProvider(
-        create: (context) => di<NavigationCubit>(),
+      builder: (context, state) => BlocProvider.value(
+        value: di<NavigationCubit>(),
         child: const MainScreen(),
       ),
     ),
@@ -81,6 +86,36 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => BlocProvider(
         create: (context) => di<OnboardingCubit>(),
         child: const OnboardingScreen(),
+      ),
+    ),
+
+    // Service Feature
+    GoRoute(
+      path: RouteNames.laundryServices,
+      builder: (context, state) => BlocProvider.value(
+        value: di<ServiceCubit>()..fetchServices(),
+        child: const ServiceListScreen(),
+      ),
+    ),
+    GoRoute(
+      path: RouteNames.selectService,
+      builder: (context, state) => BlocProvider.value(
+        value: di<ServiceCubit>(),
+        child: const SelectServiceScreen(),
+      ),
+    ),
+    GoRoute(
+      path: RouteNames.bookingInfo,
+      builder: (context, state) => BlocProvider.value(
+        value: di<ServiceCubit>(),
+        child: const BookingInfoScreen(),
+      ),
+    ),
+    GoRoute(
+      path: RouteNames.orderSummary,
+      builder: (context, state) => BlocProvider.value(
+        value: di<ServiceCubit>(),
+        child: const OrderSummaryScreen(),
       ),
     ),
   ],
