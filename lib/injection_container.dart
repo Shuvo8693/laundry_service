@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:e_laundry/core/entities/json_serializer.dart';
 import 'package:e_laundry/core/network/dio_network_call_executor.dart';
+import 'package:e_laundry/features/service/data/repositories/service_repository_impl.dart';
+import 'package:e_laundry/features/service/domain/repositories/service_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:e_laundry/core/config/app_config.dart';
@@ -35,9 +37,14 @@ import 'package:e_laundry/features/home/data/datasources/home_local_data_source.
 import 'package:e_laundry/features/home/domain/usecases/get_home_data.dart';
 import 'package:e_laundry/features/home/presentation/cubit/home_cubit.dart';
 import 'package:e_laundry/features/service/data/datasources/service_local_data_source.dart';
-import 'package:e_laundry/features/service/data/repositories/service_repository_impl.dart';
-import 'package:e_laundry/features/service/domain/repositories/service_repository.dart';
 import 'package:e_laundry/features/service/presentation/cubit/service_cubit.dart';
+import 'package:e_laundry/features/order/domain/repositories/order_repository.dart';
+import 'package:e_laundry/features/order/data/repositories/order_repository_impl.dart';
+import 'package:e_laundry/features/order/data/datasources/order_local_data_source.dart';
+import 'package:e_laundry/features/order/domain/usecases/get_active_orders.dart';
+import 'package:e_laundry/features/order/domain/usecases/get_completed_orders.dart';
+import 'package:e_laundry/features/order/domain/usecases/get_order_details.dart';
+import 'package:e_laundry/features/order/presentation/cubit/order_cubit.dart';
 
 final di = GetIt.instance;
 
@@ -175,4 +182,29 @@ Future<void> initDI(AppConfig config) async {
     () => ServiceRepositoryImpl(localDataSource: di()),
   );
   di.registerLazySingleton(() => ServiceCubit(repository: di()));
+
+  // ── Order ───────────────────────────────────────────────────────────
+  // 1. Data Sources
+  di.registerLazySingleton<OrderLocalDataSource>(
+    () => OrderLocalDataSourceImpl(),
+  );
+
+  // 2. Repository
+  di.registerLazySingleton<OrderRepository>(
+    () => OrderRepositoryImpl(localDataSource: di()),
+  );
+
+  // 3. Use Cases
+  di.registerLazySingleton(() => GetActiveOrders(di()));
+  di.registerLazySingleton(() => GetCompletedOrders(di()));
+  di.registerLazySingleton(() => GetOrderDetails(di()));
+
+  // 4. Cubit
+  di.registerFactory(
+    () => OrderCubit(
+      getActiveOrdersUseCase: di(),
+      getCompletedOrdersUseCase: di(),
+      getOrderDetailsUseCase: di(),
+    ),
+  );
 }

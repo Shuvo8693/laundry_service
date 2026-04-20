@@ -20,6 +20,8 @@ import 'package:e_laundry/features/service/presentation/screens/service_list_scr
 import 'package:e_laundry/features/service/presentation/screens/select_service_screen.dart';
 import 'package:e_laundry/features/service/presentation/screens/booking_info_screen.dart';
 import 'package:e_laundry/features/service/presentation/screens/order_summary_screen.dart';
+import 'package:e_laundry/features/order/presentation/screens/order_details_screen.dart';
+import 'package:e_laundry/features/order/presentation/cubit/order_cubit.dart';
 import 'package:e_laundry/injection_container.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -38,6 +40,18 @@ final GoRouter appRouter = GoRouter(
         value: di<NavigationCubit>(),
         child: const MainScreen(),
       ),
+      routes: [
+        GoRoute(
+          path: RouteNames.orderDetails,
+          builder: (context, state) {
+            final orderId = state.pathParameters['orderId']!;
+            return BlocProvider(
+              create: (context) => di<OrderCubit>(),
+              child: OrderDetailsScreen(orderId: orderId),
+            );
+          },
+        ),
+      ],
     ),
     GoRoute(
       path: RouteNames.login,

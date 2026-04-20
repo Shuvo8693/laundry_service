@@ -1,3 +1,4 @@
+import 'package:e_laundry/core/utils/screen_util.dart';
 import 'package:flutter/material.dart';
 
 /// Reusable vertical and horizontal spacing widgets
@@ -23,7 +24,7 @@ class VerticalSpace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(height: height);
+    return SizedBox(height: height.h);
   }
 }
 
@@ -47,6 +48,6 @@ class HorizontalSpace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(width: width);
+    return SizedBox(width: width.w);
   }
 }

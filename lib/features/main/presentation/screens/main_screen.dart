@@ -8,6 +8,9 @@ import 'package:e_laundry/core/navigation/cubit/navigation_state.dart';
 import 'package:e_laundry/core/widgets/custom_text.dart';
 import 'package:e_laundry/core/widgets/language_switcher.dart';
 import 'package:e_laundry/features/home/presentation/screens/home_screen.dart';
+import 'package:e_laundry/features/order/presentation/screens/orders_screen.dart';
+import 'package:e_laundry/features/order/presentation/cubit/order_cubit.dart';
+import 'package:e_laundry/injection_container.dart';
 
 /// Represents a nav item that can use either an SVG asset or an IconData.
 class NavItemConfig {
@@ -55,7 +58,10 @@ class _MainScreenState extends State<MainScreen> {
     _screens = [
       const HomeScreen(),
       const ServiceListScreen(),
-      const Center(child: CustomText.bodyLarge('Orders')),
+      BlocProvider(
+        create: (context) => di<OrderCubit>(),
+        child: const OrdersScreen(),
+      ),
       const Center(child: CustomText.bodyLarge('Profile')),
     ];
   }

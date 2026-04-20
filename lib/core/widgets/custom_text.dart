@@ -37,8 +37,7 @@ class CustomText extends StatelessWidget {
   final Color? decorationColor;
   final TextDecorationStyle? decorationStyle;
 
-  const CustomText(
-     {
+  const CustomText({
     super.key,
     required this.text,
     this.textType = TextType.bodyMedium,
@@ -64,17 +63,17 @@ class CustomText extends StatelessWidget {
     super.key,
     this.color,
     this.overflow,
+    this.fontWeight,
     this.maxLines,
     this.textAlign,
-  })  : textType = TextType.displayLarge,
-        fontWeight = null,
-        fontSize = null,
-        height = null,
-        letterSpacing = null,
-        shadows = null,
-        decoration = null,
-        decorationColor = null,
-        decorationStyle = null;
+  }) : textType = TextType.displayLarge,
+       fontSize = null,
+       height = null,
+       letterSpacing = null,
+       shadows = null,
+       decoration = null,
+       decorationColor = null,
+       decorationStyle = null;
 
   /// Display Medium — 28px, Bold, Plus Jakarta Sans
   const CustomText.displayMedium(
@@ -82,17 +81,17 @@ class CustomText extends StatelessWidget {
     super.key,
     this.color,
     this.overflow,
+    this.fontWeight,
     this.maxLines,
     this.textAlign,
-  })  : textType = TextType.displayMedium,
-        fontWeight = null,
-        fontSize = null,
-        height = null,
-        letterSpacing = null,
-        shadows = null,
-        decoration = null,
-        decorationColor = null,
-        decorationStyle = null;
+  }) : textType = TextType.displayMedium,
+       fontSize = null,
+       height = null,
+       letterSpacing = null,
+       shadows = null,
+       decoration = null,
+       decorationColor = null,
+       decorationStyle = null;
 
   /// Headline Large — 24px, Bold, Plus Jakarta Sans
   const CustomText.headlineLarge(
@@ -100,17 +99,17 @@ class CustomText extends StatelessWidget {
     super.key,
     this.color,
     this.overflow,
+    this.fontWeight,
     this.maxLines,
     this.textAlign,
-  })  : textType = TextType.headlineLarge,
-        fontWeight = null,
-        fontSize = null,
-        height = null,
-        letterSpacing = null,
-        shadows = null,
-        decoration = null,
-        decorationColor = null,
-        decorationStyle = null;
+  }) : textType = TextType.headlineLarge,
+       fontSize = null,
+       height = null,
+       letterSpacing = null,
+       shadows = null,
+       decoration = null,
+       decorationColor = null,
+       decorationStyle = null;
 
   /// Headline Medium — 20px, SemiBold, Plus Jakarta Sans
   const CustomText.headlineMedium(
@@ -118,17 +117,17 @@ class CustomText extends StatelessWidget {
     super.key,
     this.color,
     this.overflow,
+    this.fontWeight,
     this.maxLines,
     this.textAlign,
-  })  : textType = TextType.headlineMedium,
-        fontWeight = null,
-        fontSize = null,
-        height = null,
-        letterSpacing = null,
-        shadows = null,
-        decoration = null,
-        decorationColor = null,
-        decorationStyle = null;
+  }) : textType = TextType.headlineMedium,
+       fontSize = null,
+       height = null,
+       letterSpacing = null,
+       shadows = null,
+       decoration = null,
+       decorationColor = null,
+       decorationStyle = null;
 
   /// Body Large — 16px, Regular, Inter, height 1.5
   const CustomText.bodyLarge(
@@ -136,17 +135,17 @@ class CustomText extends StatelessWidget {
     super.key,
     this.color,
     this.overflow,
+    this.fontWeight,
     this.maxLines,
     this.textAlign,
-  })  : textType = TextType.bodyLarge,
-        fontWeight = null,
-        fontSize = null,
-        height = null,
-        letterSpacing = null,
-        shadows = null,
-        decoration = null,
-        decorationColor = null,
-        decorationStyle = null;
+  }) : textType = TextType.bodyLarge,
+       fontSize = null,
+       height = null,
+       letterSpacing = null,
+       shadows = null,
+       decoration = null,
+       decorationColor = null,
+       decorationStyle = null;
 
   /// Body Medium — 14px, Regular, Inter
   const CustomText.bodyMedium(
@@ -154,17 +153,17 @@ class CustomText extends StatelessWidget {
     super.key,
     this.color,
     this.overflow,
+    this.fontWeight,
     this.maxLines,
     this.textAlign,
-  })  : textType = TextType.bodyMedium,
-        fontWeight = null,
-        fontSize = null,
-        height = null,
-        letterSpacing = null,
-        shadows = null,
-        decoration = null,
-        decorationColor = null,
-        decorationStyle = null;
+  }) : textType = TextType.bodyMedium,
+       fontSize = null,
+       height = null,
+       letterSpacing = null,
+       shadows = null,
+       decoration = null,
+       decorationColor = null,
+       decorationStyle = null;
 
   /// Body Small — 12px, Regular, Inter, onSurfaceVariant
   const CustomText.bodySmall(
@@ -172,17 +171,17 @@ class CustomText extends StatelessWidget {
     super.key,
     this.color,
     this.overflow,
+    this.fontWeight,
     this.maxLines,
     this.textAlign,
-  })  : textType = TextType.bodySmall,
-        fontWeight = null,
-        fontSize = null,
-        height = null,
-        letterSpacing = null,
-        shadows = null,
-        decoration = null,
-        decorationColor = null,
-        decorationStyle = null;
+  }) : textType = TextType.bodySmall,
+       fontSize = null,
+       height = null,
+       letterSpacing = null,
+       shadows = null,
+       decoration = null,
+       decorationColor = null,
+       decorationStyle = null;
 
   /// Label Large — 14px, SemiBold, Plus Jakarta Sans
   const CustomText.labelLarge(
@@ -191,16 +190,16 @@ class CustomText extends StatelessWidget {
     this.color,
     this.overflow,
     this.maxLines,
+    this.fontWeight,
     this.textAlign,
-  })  : textType = TextType.labelLarge,
-        fontWeight = null,
-        fontSize = null,
-        height = null,
-        letterSpacing = null,
-        shadows = null,
-        decoration = null,
-        decorationColor = null,
-        decorationStyle = null;
+  }) : textType = TextType.labelLarge,
+       fontSize = null,
+       height = null,
+       letterSpacing = null,
+       shadows = null,
+       decoration = null,
+       decorationColor = null,
+       decorationStyle = null;
 
   /// Label Small — 10px, Bold, Plus Jakarta Sans, onSurfaceVariant
   const CustomText.labelSmall(
@@ -209,16 +208,16 @@ class CustomText extends StatelessWidget {
     this.color,
     this.overflow,
     this.maxLines,
+    this.fontWeight,
     this.textAlign,
-  })  : textType = TextType.labelSmall,
-        fontWeight = null,
-        fontSize = null,
-        height = null,
-        letterSpacing = null,
-        shadows = null,
-        decoration = null,
-        decorationColor = null,
-        decorationStyle = null;
+  }) : textType = TextType.labelSmall,
+       fontSize = null,
+       height = null,
+       letterSpacing = null,
+       shadows = null,
+       decoration = null,
+       decorationColor = null,
+       decorationStyle = null;
 
   // ── Style resolution ─────────────────────────────────────────────────────
 

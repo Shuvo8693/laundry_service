@@ -17,4 +17,6 @@ class RouteNames {
   static const String selectService = '/select_service';
   static const String bookingInfo = '/booking_info';
   static const String orderSummary = '/order_summary';
+  static const String orders = '/orders';
+  static const String orderDetails = 'order_details/:orderId';
 }

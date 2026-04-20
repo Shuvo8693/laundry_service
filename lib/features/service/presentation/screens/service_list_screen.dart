@@ -25,9 +25,7 @@ class _ServiceListScreenState extends State<ServiceListScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await di<ServiceCubit>().fetchServices();
-    });
+    di<ServiceCubit>().fetchServices();
   }
 
   @override
