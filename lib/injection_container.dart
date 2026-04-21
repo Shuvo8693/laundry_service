@@ -45,6 +45,14 @@ import 'package:e_laundry/features/order/domain/usecases/get_active_orders.dart'
 import 'package:e_laundry/features/order/domain/usecases/get_completed_orders.dart';
 import 'package:e_laundry/features/order/domain/usecases/get_order_details.dart';
 import 'package:e_laundry/features/order/presentation/cubit/order_cubit.dart';
+import 'package:e_laundry/features/settings/data/datasources/settings_local_data_source.dart';
+import 'package:e_laundry/features/settings/data/repositories/settings_repository_impl.dart';
+import 'package:e_laundry/features/settings/domain/repositories/settings_repository.dart';
+import 'package:e_laundry/features/settings/domain/usecases/change_password.dart';
+import 'package:e_laundry/features/settings/domain/usecases/get_user_profile.dart';
+import 'package:e_laundry/features/settings/domain/usecases/logout.dart';
+import 'package:e_laundry/features/settings/domain/usecases/update_profile.dart';
+import 'package:e_laundry/features/settings/presentation/cubit/settings_cubit.dart';
 
 final di = GetIt.instance;
 
@@ -205,6 +213,33 @@ Future<void> initDI(AppConfig config) async {
       getActiveOrdersUseCase: di(),
       getCompletedOrdersUseCase: di(),
       getOrderDetailsUseCase: di(),
+    ),
+  );
+
+  // ── Settings ────────────────────────────────────────────────────────
+  // 1. Data Sources
+  di.registerLazySingleton<SettingsLocalDataSource>(
+    () => SettingsLocalDataSourceImpl(),
+  );
+
+  // 2. Repository
+  di.registerLazySingleton<SettingsRepository>(
+    () => SettingsRepositoryImpl(localDataSource: di()),
+  );
+
+  // 3. Use Cases
+  di.registerLazySingleton(() => GetUserProfile(di()));
+  di.registerLazySingleton(() => UpdateProfile(di()));
+  di.registerLazySingleton(() => ChangePassword(di()));
+  di.registerLazySingleton(() => Logout(di()));
+
+  // 4. Cubit
+  di.registerFactory(
+    () => SettingsCubit(
+      getUserProfile: di(),
+      updateProfile: di(),
+      changePassword: di(),
+      logoutUseCase: di(),
     ),
   );
 }

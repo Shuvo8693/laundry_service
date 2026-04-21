@@ -8,11 +8,7 @@ class SocialLoginButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
 
-  const SocialLoginButton({
-    super.key,
-    required this.text,
-    required this.onTap,
-  });
+  const SocialLoginButton({super.key, required this.text, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +20,9 @@ class SocialLoginButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(24.r),
-          border: Border.all(color: AppColors.outline), // Equivalent to Neutral-200
+          border: Border.all(
+            color: AppColors.outline,
+          ), // Equivalent to Neutral-200
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
