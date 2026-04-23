@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:e_laundry/core/resources/colors/app_colors.dart';
 import 'package:e_laundry/core/utils/screen_util.dart';
 import 'package:e_laundry/core/widgets/widgets.dart';
 

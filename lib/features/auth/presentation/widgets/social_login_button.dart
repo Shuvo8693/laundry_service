@@ -2,7 +2,6 @@ import 'package:e_laundry/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:e_laundry/core/utils/screen_util.dart';
 import 'package:e_laundry/core/resources/colors/app_colors.dart';
-import 'package:e_laundry/core/resources/text/app_text_theme.dart';
 
 class SocialLoginButton extends StatelessWidget {
   final String text;

@@ -5,8 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:e_laundry/core/navigation/cubit/navigation_cubit.dart';
 import 'package:e_laundry/core/navigation/cubit/navigation_state.dart';
-import 'package:e_laundry/core/widgets/custom_text.dart';
-import 'package:e_laundry/core/widgets/language_switcher.dart';
 import 'package:e_laundry/features/home/presentation/screens/home_screen.dart';
 import 'package:e_laundry/features/order/presentation/screens/orders_screen.dart';
 import 'package:e_laundry/features/order/presentation/cubit/order_cubit.dart';

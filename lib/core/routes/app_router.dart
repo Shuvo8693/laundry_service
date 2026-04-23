@@ -2,7 +2,6 @@ import 'package:e_laundry/core/navigation/cubit/navigation_cubit.dart';
 import 'package:e_laundry/features/main/presentation/screens/main_screen.dart';
 import 'package:e_laundry/features/onboarding/onboarding_screen.dart';
 import 'package:e_laundry/features/onboarding/presentation/cubit/onboarding/onboarding_cubit.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:e_laundry/core/routes/route_names.dart';

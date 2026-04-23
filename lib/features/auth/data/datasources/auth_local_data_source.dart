@@ -1,6 +1,5 @@
 import 'package:e_laundry/core/error/exceptions.dart';
 import 'package:e_laundry/features/auth/data/models/auth_model.dart';
-import 'dart:convert';
 
 abstract class AuthLocalDataSource {
   Future<AuthModel> login(String phone, String password);

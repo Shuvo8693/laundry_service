@@ -6,11 +6,8 @@ import '../../domain/entities/booking_details.dart';
 sealed class ServiceState extends Equatable {
   final BookingDetails bookingDetails;
   final List<ServiceEntity> services;
-  
-  const ServiceState({
-    required this.bookingDetails,
-    this.services = const [],
-  });
+
+  const ServiceState({required this.bookingDetails, this.services = const []});
 
   @override
   List<Object?> get props => [bookingDetails, services];
@@ -21,13 +18,11 @@ final class ServiceInitial extends ServiceState {
 }
 
 final class ServiceLoading extends ServiceState {
-  const ServiceLoading({
-    required super.bookingDetails,
-    super.services,
-  });
+  const ServiceLoading({required super.bookingDetails, super.services});
 }
 
 final class ServicesListLoaded extends ServiceState {
+  @override
   final List<ServiceEntity> services;
   const ServicesListLoaded({
     required super.bookingDetails,

@@ -1,4 +1,3 @@
-import 'package:e_laundry/core/error/exceptions.dart';
 import '../models/user_profile_model.dart';
 
 abstract class SettingsLocalDataSource {
