@@ -5,11 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:e_laundry/core/navigation/cubit/navigation_cubit.dart';
 import 'package:e_laundry/core/navigation/cubit/navigation_state.dart';
-import 'package:e_laundry/core/widgets/custom_text.dart';
-import 'package:e_laundry/core/widgets/language_switcher.dart';
 import 'package:e_laundry/features/home/presentation/screens/home_screen.dart';
 import 'package:e_laundry/features/order/presentation/screens/orders_screen.dart';
 import 'package:e_laundry/features/order/presentation/cubit/order_cubit.dart';
+import 'package:e_laundry/features/settings/presentation/cubit/settings_cubit.dart';
+import 'package:e_laundry/features/settings/presentation/screens/settings_screen.dart';
 import 'package:e_laundry/injection_container.dart';
 
 /// Represents a nav item that can use either an SVG asset or an IconData.
@@ -62,7 +62,10 @@ class _MainScreenState extends State<MainScreen> {
         create: (context) => di<OrderCubit>(),
         child: const OrdersScreen(),
       ),
-      const Center(child: CustomText.bodyLarge('Profile')),
+      BlocProvider(
+        create: (context) => di<SettingsCubit>()..fetchProfile(),
+        child: const SettingsScreen(),
+      ),
     ];
   }
 

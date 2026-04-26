@@ -12,6 +12,12 @@ class RouteNames {
   static const String dashboard = '/dashboard';
   static const String onboarding = '/onboarding';
   
+  // Settings Feature
+  static const String changePassword = '/change_password';
+  static const String helpSupport = '/help_support';
+  static const String privacyPolicy = '/privacy_policy';
+  static const String termsConditions = '/terms_conditions';
+
   // Service Feature
   static const String laundryServices = '/laundry_services';
   static const String selectService = '/select_service';

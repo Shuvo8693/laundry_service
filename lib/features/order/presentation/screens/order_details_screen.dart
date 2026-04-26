@@ -8,21 +8,8 @@ import 'package:e_laundry/core/widgets/widgets.dart';
 import 'package:e_laundry/features/order/presentation/cubit/order_cubit.dart';
 import 'package:intl/intl.dart';
 
-class OrderDetailsScreen extends StatefulWidget {
-  final String orderId;
-
-  const OrderDetailsScreen({super.key, required this.orderId});
-
-  @override
-  State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
-}
-
-class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<OrderCubit>().fetchOrderDetails(widget.orderId);
-  }
+class OrderDetailsScreen extends StatelessWidget {
+  const OrderDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

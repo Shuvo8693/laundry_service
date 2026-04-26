@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_laundry/core/utils/screen_util.dart';
 import 'package:go_router/go_router.dart';
 import 'package:e_laundry/core/resources/colors/app_colors.dart';
-import 'package:e_laundry/core/resources/text/app_text_theme.dart';
 import 'package:e_laundry/core/routes/route_names.dart';
 import 'package:e_laundry/core/widgets/widgets.dart';
 import 'package:e_laundry/features/auth/presentation/cubit/auth_cubit.dart';

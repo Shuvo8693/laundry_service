@@ -2,17 +2,12 @@ import 'package:e_laundry/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:e_laundry/core/utils/screen_util.dart';
 import 'package:e_laundry/core/resources/colors/app_colors.dart';
-import 'package:e_laundry/core/resources/text/app_text_theme.dart';
 
 class SocialLoginButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
 
-  const SocialLoginButton({
-    super.key,
-    required this.text,
-    required this.onTap,
-  });
+  const SocialLoginButton({super.key, required this.text, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +19,9 @@ class SocialLoginButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(24.r),
-          border: Border.all(color: AppColors.outline), // Equivalent to Neutral-200
+          border: Border.all(
+            color: AppColors.outline,
+          ), // Equivalent to Neutral-200
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -2,7 +2,6 @@ import 'package:e_laundry/core/navigation/cubit/navigation_cubit.dart';
 import 'package:e_laundry/features/main/presentation/screens/main_screen.dart';
 import 'package:e_laundry/features/onboarding/onboarding_screen.dart';
 import 'package:e_laundry/features/onboarding/presentation/cubit/onboarding/onboarding_cubit.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:e_laundry/core/routes/route_names.dart';
@@ -22,6 +21,13 @@ import 'package:e_laundry/features/service/presentation/screens/booking_info_scr
 import 'package:e_laundry/features/service/presentation/screens/order_summary_screen.dart';
 import 'package:e_laundry/features/order/presentation/screens/order_details_screen.dart';
 import 'package:e_laundry/features/order/presentation/cubit/order_cubit.dart';
+import 'package:e_laundry/features/settings/presentation/cubit/settings_cubit.dart';
+import 'package:e_laundry/features/settings/presentation/screens/settings_screen.dart';
+import 'package:e_laundry/features/settings/presentation/screens/profile_screen.dart';
+import 'package:e_laundry/features/settings/presentation/screens/change_password_screen.dart';
+import 'package:e_laundry/features/settings/presentation/screens/help_support_screen.dart';
+import 'package:e_laundry/features/settings/presentation/screens/privacy_policy_screen.dart';
+import 'package:e_laundry/features/settings/presentation/screens/terms_conditions_screen.dart';
 import 'package:e_laundry/injection_container.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -46,8 +52,8 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) {
             final orderId = state.pathParameters['orderId']!;
             return BlocProvider(
-              create: (context) => di<OrderCubit>(),
-              child: OrderDetailsScreen(orderId: orderId),
+              create: (context) => di<OrderCubit>()..fetchOrderDetails(orderId),
+              child: OrderDetailsScreen(),
             );
           },
         ),
@@ -131,6 +137,41 @@ final GoRouter appRouter = GoRouter(
         value: di<ServiceCubit>(),
         child: const OrderSummaryScreen(),
       ),
+    ),
+
+    // Settings Feature
+    GoRoute(
+      path: RouteNames.settings,
+      builder: (context, state) => BlocProvider(
+        create: (context) => di<SettingsCubit>()..fetchProfile(),
+        child: const SettingsScreen(),
+      ),
+    ),
+    GoRoute(
+      path: RouteNames.profile,
+      builder: (context, state) => BlocProvider(
+        create: (context) => di<SettingsCubit>()..fetchProfile(),
+        child: const ProfileScreen(),
+      ),
+    ),
+    GoRoute(
+      path: RouteNames.changePassword,
+      builder: (context, state) => BlocProvider(
+        create: (context) => di<SettingsCubit>(),
+        child: const ChangePasswordScreen(),
+      ),
+    ),
+    GoRoute(
+      path: RouteNames.helpSupport,
+      builder: (context, state) => const HelpSupportScreen(),
+    ),
+    GoRoute(
+      path: RouteNames.privacyPolicy,
+      builder: (context, state) => const PrivacyPolicyScreen(),
+    ),
+    GoRoute(
+      path: RouteNames.termsConditions,
+      builder: (context, state) => const TermsConditionsScreen(),
     ),
   ],
 );

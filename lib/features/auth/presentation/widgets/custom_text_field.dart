@@ -54,15 +54,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
                   decoration: BoxDecoration(
                     color: Colors.transparent,
-                    border: Border(right: BorderSide(color: AppColors.outlineVariant)),
+                    border: Border(
+                      right: BorderSide(color: AppColors.outlineVariant),
+                    ),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      CustomText(
-                        text: '+27',
-                        textType: TextType.bodyMedium,
-                      ),
+                      CustomText(text: '+27', textType: TextType.bodyMedium),
                       Icon(Icons.arrow_drop_down, color: AppColors.onSurface),
                     ],
                   ),
@@ -72,12 +71,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 child: TextField(
                   controller: widget.controller,
                   obscureText: widget.isPassword && _obscureText,
-                  keyboardType: widget.isPhone ? TextInputType.phone : TextInputType.text,
+                  keyboardType: widget.isPhone
+                      ? TextInputType.phone
+                      : TextInputType.text,
                   style: AppTextTheme.textTheme.bodyMedium,
                   decoration: InputDecoration(
                     hintText: widget.hintText,
-                    hintStyle: AppTextTheme.textTheme.bodyMedium!.copyWith(color: AppColors.onSurfaceVariant),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                    hintStyle: AppTextTheme.textTheme.bodyMedium!.copyWith(
+                      color: AppColors.onSurfaceVariant,
+                    ),
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                      vertical: 16.h,
+                    ),
                     border: InputBorder.none,
                     isDense: true,
                   ),
@@ -86,7 +92,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
               if (widget.isPassword)
                 IconButton(
                   icon: Icon(
-                    _obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                    _obscureText
+                        ? Icons.visibility_off_outlined
+                        : Icons.visibility_outlined,
                     color: AppColors.onSurfaceVariant,
                   ),
                   onPressed: () {

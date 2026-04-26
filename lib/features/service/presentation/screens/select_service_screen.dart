@@ -20,16 +20,14 @@ class SelectServiceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<ServiceCubit, ServiceState>(
       listenWhen: (previous, current) =>
-          previous is! BookingInfoInProgress && current is BookingInfoInProgress,
+          previous is! BookingInfoInProgress &&
+          current is BookingInfoInProgress,
       listener: (context, state) {
         context.push(RouteNames.bookingInfo);
       },
       child: Scaffold(
         backgroundColor: AppColors.background,
-        appBar: const CustomAppBar(
-          title: 'Book Service',
-          showBackButton: true,
-        ),
+        appBar: const CustomAppBar(title: 'Book Service', showBackButton: true),
         body: Column(
           children: [
             Expanded(
@@ -63,8 +61,9 @@ class SelectServiceScreen extends StatelessWidget {
                       buildWhen: (previous, current) =>
                           current is ClothSelectionLoaded,
                       builder: (context, state) {
-                        if (state is! ClothSelectionLoaded)
+                        if (state is! ClothSelectionLoaded) {
                           return const SizedBox.shrink();
+                        }
                         return Column(
                           children: state.items
                               .map(
@@ -96,8 +95,9 @@ class SelectServiceScreen extends StatelessWidget {
                   child: AppButton(
                     text: 'Next',
                     onPressed: details.selectedItems.isNotEmpty
-                        ? () =>
-                            context.read<ServiceCubit>().proceedToBookingInfo()
+                        ? () => context
+                              .read<ServiceCubit>()
+                              .proceedToBookingInfo()
                         : null,
                   ),
                 );

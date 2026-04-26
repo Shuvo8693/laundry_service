@@ -51,4 +51,11 @@ class ImageResourceResolver {
 
   static PNGImageResource get imagePlaceholder =>
       const PNGImageResource('$imageBasePath/image_placeholder.png');
+
+  // Settings Feature Banners
+  static PNGImageResource get helpSupportBanner =>
+      const PNGImageResource('$imageBasePath/help_support_banner.png');
+
+  static PNGImageResource get privacyPolicyBanner =>
+      const PNGImageResource('$imageBasePath/privacy_policy_banner.png');
 }

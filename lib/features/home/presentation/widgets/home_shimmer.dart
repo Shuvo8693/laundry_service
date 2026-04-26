@@ -45,7 +45,7 @@ class HomeShimmer extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             scrollDirection: Axis.horizontal,
             itemCount: 3,
-            itemBuilder: (_, __) => Padding(
+            itemBuilder: (_, _) => Padding(
               padding: EdgeInsets.only(right: 8.w),
               child: ShimmerPlaceholder.card(width: 114.w, height: 140.h),
             ),

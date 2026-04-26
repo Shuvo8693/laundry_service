@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_laundry/core/utils/screen_util.dart';
 import 'package:go_router/go_router.dart';
-import 'package:e_laundry/core/resources/text/app_text_theme.dart';
 import 'package:e_laundry/core/routes/route_names.dart';
 import 'package:e_laundry/core/widgets/widgets.dart';
 import 'package:e_laundry/features/auth/presentation/cubit/auth_cubit.dart';
@@ -19,7 +18,8 @@ class ResetPasswordScreen extends StatefulWidget {
 
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   @override
   void dispose() {
@@ -33,17 +33,17 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     final confirm = _confirmPasswordController.text;
 
     if (pass.isEmpty || confirm.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-           const SnackBar(content: Text('Please fill all fields')),
-        );
-        return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Please fill all fields')));
+      return;
     }
 
     if (pass != confirm) {
-        ScaffoldMessenger.of(context).showSnackBar(
-           const SnackBar(content: Text('Passwords do not match')),
-        );
-        return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Passwords do not match')));
+      return;
     }
 
     final phone = context.read<AuthCubit>().pendingPhone ?? '';
@@ -54,26 +54,24 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(
-        title: '',
-        backgroundColor: Colors.white,
-      ),
+      appBar: CustomAppBar(title: '', backgroundColor: Colors.white),
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-           if (state is AuthError) {
-             ScaffoldMessenger.of(context).showSnackBar(
-               SnackBar(content: Text(state.message)),
-             );
-           } else if (state is AuthAuthenticated) { // Assuming resetPassword logs us in or we just show success
-             AuthSuccessModal.show(
-                context,
-                title: 'Password Update',
-                description: 'You have Successfully Updated your password',
-                onConfirm: () {
-                   context.goNamed(RouteNames.dashboard);
-                },
-             );
-           }
+          if (state is AuthError) {
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(state.message)));
+          } else if (state is AuthAuthenticated) {
+            // Assuming resetPassword logs us in or we just show success
+            AuthSuccessModal.show(
+              context,
+              title: 'Password Update',
+              description: 'You have Successfully Updated your password',
+              onConfirm: () {
+                context.goNamed(RouteNames.dashboard);
+              },
+            );
+          }
         },
         builder: (context, state) {
           final isLoading = state is AuthLoading;

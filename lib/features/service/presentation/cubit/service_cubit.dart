@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/repositories/service_repository.dart';
 import '../../domain/entities/service_entity.dart';
-import '../../domain/entities/cloth_item_entity.dart';
 import 'service_state.dart';
 
 class ServiceCubit extends Cubit<ServiceState> {

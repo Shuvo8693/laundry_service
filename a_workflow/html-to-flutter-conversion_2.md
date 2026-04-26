@@ -112,7 +112,7 @@ lib/
 │       ├── error_placeholder.dart       # ErrorPlaceholder + retry callback
 │       ├── language_switcher.dart
 │       ├── shimmer_placeholder.dart     # ShimmerPlaceholder — loading states
-│       ├── spacing.dart                 # VSpace / HSpace helpers
+│       ├── spacing.dart                 # VerticalSpace / HorizontalSpace helpers
 │       └── widgets.dart                 # barrel export (single import)
 │
 └── features/
@@ -488,18 +488,29 @@ class LaundryOrderCubit extends Cubit<LaundryOrderState> {
 | `OrderCard` — composed card widget | Colors → `AppColors.*` |
 | `ServiceListItem` — row/tile widget | Text styles → `AppTextStyles.*` |
 | `OrderSummarySection` — section container | Shimmer → `ShimmerPlaceholder` from `core/widgets` |
-| `CheckoutBottomSheet` — bottom sheet body | Spacing → `VSpace` / `HSpace` from `core/widgets` |
+| `CheckoutBottomSheet` — bottom sheet body | Spacing → `VerticalSpace` / `HorizontalSpace` from `core/widgets` |
 | `ServiceBadge` — feature-specific badge | Buttons → `AppButton` from `core/widgets` |
 | `OrderStatusRow` — composed status row | Loading indicator → `CustomProgressIndicator` |
 
 > 🎯 **Golden Rules for Pixel-Perfect UI:**
 > - **NEVER** hardcode colors inline — always use `AppColors.*`
 > - **NEVER** hardcode text styles inline — always use `AppTextStyles.*`
-> - **NEVER** hardcode spacings — always use `VSpace/HSpace` from `core/widgets/widgets.dart`
+> - **NEVER** use raw `double` for widths, heights, paddings, or radii — always use `.w` / `.h` / `.r` / `.sp` from `ScreenUtil`
+> - **NEVER** use bare `SizedBox(height: 16)` — always use `VerticalSpace(16)` (which internally applies `.h`) or `SizedBox(height: 16.h)`
+> - **NEVER** use bare `EdgeInsets.all(16)` — always use `EdgeInsets.all(16.r)` or `EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h)`
+> - **NEVER** use bare `BorderRadius.circular(12)` — always use `BorderRadius.circular(12.r)`
 > - **ALWAYS** import shimmer, buttons, text, spacing from `core/widgets/widgets.dart`
+> - **ALWAYS** import `screen_util.dart` in any UI file that uses `.w` / `.h` / `.r` / `.sp`
 > - **ALWAYS** handle loading in the **screen** using `ShimmerPlaceholder` from core
 > - **ALWAYS** handle errors in the **screen** using `ErrorPlaceholder` from core
 > - Feature `widgets/` files **only compose** core widgets + entity data — nothing else
+
+#### Mandatory UI Imports
+Every screen and feature widget file **must** start with these two imports:
+```dart
+import 'package:e_laundry/core/utils/screen_util.dart'; // .w .h .r .sp extensions
+import 'package:e_laundry/core/widgets/widgets.dart';   // VerticalSpace, HorizontalSpace, AppButton, CustomText, etc.
+```
 
 #### 5a. Feature-Specific Widget (Card)
 `lib/features/<feature>/presentation/widgets/<feature>_card.dart`
@@ -525,11 +536,11 @@ class LaundryOrderCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        padding: const EdgeInsets.all(16),
+        margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+        padding: EdgeInsets.all(16.r),
         decoration: BoxDecoration(
           color: AppColors.cardBackground,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
           boxShadow: [
             BoxShadow(
               color: AppColors.shadow,
@@ -542,14 +553,14 @@ class LaundryOrderCard extends StatelessWidget {
           children: [
             // Status indicator dot
             Container(
-              width: 10,
-              height: 10,
+              width: 10.r,
+              height: 10.r,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: _statusColor(order.status),
               ),
             ),
-            const HSpace(12),
+            const HorizontalSpace(12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -558,7 +569,7 @@ class LaundryOrderCard extends StatelessWidget {
                     text: order.serviceName,
                     style: AppTextStyles.bodyMediumBold,
                   ),
-                  const VSpace(4),
+                  const VerticalSpace(4),
                   CustomText(
                     text: order.status,
                     style: AppTextStyles.caption.copyWith(
@@ -595,13 +606,13 @@ class LaundryOrderCard extends StatelessWidget {
 `lib/features/<feature>/presentation/widgets/<feature>_section.dart`
 
 > This is a **composed UI container** — it uses `CustomText`, `AppColors`, `AppTextStyles`,
-> `VSpace` from core. It does NOT define its own colors or shimmer.
+> `VerticalSpace` from core. It does NOT define its own colors or shimmer.
 
 ```dart
 import 'package:flutter/material.dart';
 import 'package:e_laundry/core/resources/colors/app_colors.dart';
 import 'package:e_laundry/core/resources/text/app_text_styles.dart';
-import 'package:e_laundry/core/widgets/widgets.dart';   // CustomText, VSpace, HSpace
+import 'package:e_laundry/core/widgets/widgets.dart';   // CustomText, VerticalSpace, HorizontalSpace
 import '../../domain/entities/<feature>_entity.dart';
 
 class OrderSummarySection extends StatelessWidget {
@@ -612,10 +623,10 @@ class OrderSummarySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,          // ← from core/resources
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -624,9 +635,9 @@ class OrderSummarySection extends StatelessWidget {
             text: 'Order Summary',
             style: AppTextStyles.titleMedium,     // ← from core/resources
           ),
-          const VSpace(8),                        // ← from core/widgets
+          const VerticalSpace(8),                        // ← from core/widgets
           _SummaryRow(label: 'Service', value: order.serviceName),
-          const VSpace(4),
+          const VerticalSpace(4),
           _SummaryRow(
             label: 'Price',
             value: '\$${order.price.toStringAsFixed(2)}',
@@ -846,8 +857,8 @@ CustomText(
 | `ShimmerPlaceholder` | `core/widgets/shimmer_placeholder.dart` | Loading states for lists/cards/images |
 | `ErrorPlaceholder` | `core/widgets/error_placeholder.dart` | All error states with retry |
 | `CustomProgressIndicator` | `core/widgets/custom_progress_indicator.dart` | Inline/overlay loading spinners |
-| `VSpace` | `core/widgets/spacing.dart` | Vertical spacing between widgets |
-| `HSpace` | `core/widgets/spacing.dart` | Horizontal spacing between widgets |
+| `VerticalSpace` | `core/widgets/spacing.dart` | Vertical spacing between widgets |
+| `HorizontalSpace` | `core/widgets/spacing.dart` | Horizontal spacing between widgets |
 | `LanguageSwitcher` | `core/widgets/language_switcher.dart` | Locale toggle in settings/appbar |
 
 ### Barrel Import (use this single import)
@@ -922,18 +933,28 @@ AppAssets.iconWash
 ### 4. Spacing Scale
 ```dart
 // From lib/core/widgets/spacing.dart
-// Use consistent multiples of 4
-const VSpace(4);    // 4dp
-const VSpace(8);    // 8dp
-const VSpace(12);   // 12dp
-const VSpace(16);   // 16dp
-const VSpace(24);   // 24dp
-const VSpace(32);   // 32dp
+// VerticalSpace and HorizontalSpace internally apply ScreenUtil scaling (.h / .w),
+// so they are ALREADY responsive. Always prefer them over raw SizedBox.
+VerticalSpace(4);    // ~4dp scaled
+VerticalSpace(8);    // ~8dp scaled
+VerticalSpace(12);   // ~12dp scaled
+VerticalSpace(16);   // ~16dp scaled
+VerticalSpace(24);   // ~24dp scaled
+VerticalSpace(32);   // ~32dp scaled
 
-// For EdgeInsets, stick to:
-EdgeInsets.all(16)
-EdgeInsets.symmetric(horizontal: 16, vertical: 8)
-EdgeInsets.only(bottom: 24)
+HorizontalSpace(8);    // ~8dp scaled
+HorizontalSpace(12);   // ~12dp scaled
+HorizontalSpace(16);   // ~16dp scaled
+
+// ✅ For EdgeInsets — ALWAYS apply ScreenUtil extensions:
+EdgeInsets.all(16.r)
+EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h)
+EdgeInsets.only(bottom: 24.h, left: 16.w, right: 16.w)
+
+// ❌ Never use raw values in UI:
+const EdgeInsets.all(16)                         // wrong — not scaled
+const EdgeInsets.symmetric(horizontal: 16)       // wrong — not scaled
+SizedBox(height: 16)                             // wrong — use VerticalSpace(16)
 ```
 
 ### 5. Border Radius Scale
@@ -1042,9 +1063,17 @@ static TextStyle get bodyMedium => TextStyle(
   color: AppColors.textPrimary,
 );
 
-// SizedBox spacing (preferred over VSpace when exact size matters)
-SizedBox(height: 24.h)   // or: const VSpace(24) if non-responsive
-SizedBox(width: 16.w)
+// ✅ Preferred spacing — VerticalSpace/HorizontalSpace are already ScreenUtil-scaled:
+VerticalSpace(24)              // internally uses 24.h — always responsive
+HorizontalSpace(16)              // internally uses 16.w — always responsive
+
+// ✅ Acceptable when exact pixel control is needed:
+SizedBox(height: 24.h)  // explicit .h required
+SizedBox(width: 16.w)   // explicit .w required
+
+// ❌ Never:
+SizedBox(height: 24)    // not scaled
+const SizedBox(height: 24)  // not scaled
 
 // Image
 Image.asset(
@@ -1126,26 +1155,31 @@ refactor/<component>          → refactor/order-card-widget
 ### 🎨 UI & Widgets
 - [ ] **All text** uses `CustomText` with `AppTextStyles.*`
 - [ ] **All colors** use `AppColors.*` — zero inline `Color(...)` or `Colors.*`
-- [ ] **All spacing** uses `VSpace`/`HSpace` or `EdgeInsets` with standard values
+- [ ] **All vertical spacing** uses `VerticalSpace(n)` — which internally applies `.h` scaling
+- [ ] **All horizontal spacing** uses `HorizontalSpace(n)` — which internally applies `.w` scaling
 - [ ] **All images** use paths from `AppAssets.*`
 - [ ] **AppButton** used for all tappable actions
 - [ ] **CustomAppBar** used for all screen app bars
-- [ ] **ShimmerPlaceholder** used during `LaundryOrderLoading` state
-- [ ] **ErrorPlaceholder** used during `LaundryOrderError` state with retry callback
+- [ ] **ShimmerPlaceholder** used during loading state
+- [ ] **ErrorPlaceholder** used during error state with retry callback
 - [ ] Single barrel import `package:e_laundry/core/widgets/widgets.dart`
+- [ ] `package:e_laundry/core/utils/screen_util.dart` imported in every UI file that uses `.w`/`.h`/`.r`/`.sp`
 - [ ] No `Text(...)` widgets — only `CustomText(...)`
 - [ ] No `ElevatedButton`/`TextButton` — only `AppButton`
-- [ ] Screen scaffold wrapped in `BlocProvider` providing cubit via `sl<>()`
+- [ ] No `SizedBox(height: n)` — use `VerticalSpace(n)` instead
+- [ ] No `SizedBox(width: n)` — use `HorizontalSpace(n)` instead
+- [ ] Screen scaffold wrapped in `BlocProvider` providing cubit via `di<>()`
 
-### 📐 ScreenUtil (Pixel-Perfect)
-- [ ] `ScreenUtilInit` wraps `MaterialApp` in `main.dart` with correct design size
-- [ ] `AppScreenUtil.designWidth` / `designHeight` match Figma canvas
-- [ ] All widths use `.w` extension (e.g. `160.w`)
-- [ ] All heights use `.h` extension (e.g. `48.h`)
+### 📐 ScreenUtil (Pixel-Perfect) — MANDATORY IN ALL UI
+- [ ] `import 'package:e_laundry/core/utils/screen_util.dart';` present in every UI file
+- [ ] All `width:` values use `.w` (e.g. `160.w`)
+- [ ] All `height:` values use `.h` (e.g. `48.h`)
+- [ ] All `EdgeInsets` values use `.w`/`.h`/`.r` — never raw doubles
+- [ ] All `BorderRadius.circular(n)` use `.r` — never raw doubles (e.g. `12.r`)
 - [ ] All font sizes in `AppTextStyles` use `.sp` (e.g. `14.sp`)
-- [ ] All border radii use `.r` (e.g. `12.r`)
-- [ ] Zero raw `double` literals for dimensions in UI files
-- [ ] `flutter_screenutil` added to `pubspec.yaml` dependencies
+- [ ] All icon sizes use `.r` (e.g. `Icons.home, size: 24.r`)
+- [ ] Zero raw `double` literals for any dimension in UI files
+- [ ] `ScreenUtil.init(context)` called at app root before any `.w`/`.h` usage
 
 ### 🔌 Dependency Injection
 - [ ] Data source → Repository → Use Cases → Cubit registered in correct order
