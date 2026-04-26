@@ -52,8 +52,8 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) {
             final orderId = state.pathParameters['orderId']!;
             return BlocProvider(
-              create: (context) => di<OrderCubit>(),
-              child: OrderDetailsScreen(orderId: orderId),
+              create: (context) => di<OrderCubit>()..fetchOrderDetails(orderId),
+              child: OrderDetailsScreen(),
             );
           },
         ),
